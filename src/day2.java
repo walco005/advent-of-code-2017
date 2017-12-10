@@ -33,13 +33,28 @@ public class day2 {
         System.out.println("The checksum for part one is " + sum);
 
         //Part Two
-        int sum2 = 0;
+        int checksum2 = 0;
         for(int i = 0; i < input.length; i++) {
-            for(int j = 0; j < input[i].length - 1; j++) {
-                for(int k = j + 1; k < input[i].length; k++) {
-
-                }
-            }
+            checksum2 += findDivisibles(input[i]);
         }
+        System.out.println(checksum2);
+    }
+    public static int findDivisibles(int[] nums) {
+        int divis = 0;
+        int i = 0;
+        int k;
+        while(divis == 0) {
+            k = i + 1;
+            while(divis == 0 && k < nums.length) {
+                if(nums[i] % nums[k] == 0) {
+                    divis = nums[i] / nums[k];
+                } else if (nums[k] % nums[i] == 0) {
+                    divis = nums[k] / nums[i];
+                }
+                k++;
+            }
+            i++;
+        }
+        return divis;
     }
 }
